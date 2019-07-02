@@ -3,19 +3,19 @@ set feedback off;
 set linesize 1000;
 set pages 0
 
-spool sector.csv;
+spool /oltp_uploads/sector.csv;
 select 
 sectorid||','||
 '"'||sector_name||'"' from oltp.sector;
 spool off;
 
-spool  industry.csv; 
+spool  /oltp_uploads/industry.csv; 
 select
 industryid||','||
 '"'||industry_name||'"' from oltp.industry;
 spool off;
 
-spool  security.csv;
+spool  /oltp_uploads/security.csv;
 select
 securityid||','||
 '"'||symbol||'",'||
@@ -30,7 +30,7 @@ from oltp.security s where exists
 (select 1 from oltp.eod_price p where s.symbol=p.symbol and p.eod_date=(select max(eod_date) from oltp.eod_price));
 spool off;
 
-spool eod_price.csv;
+spool /oltp_uploads/eod_price.csv;
 select
 '"'||symbol||'",'||
 '"'||eod_date||'",'||
