@@ -1,0 +1,31 @@
+CREATE OR REPLACE PROCEDURE staging.legacy_elt ( p_eod_date DATE ) AS
+BEGIN
+ DELETE FROM staging.security_data;
+
+ INSERT INTO staging.security_data
+ SELECT
+  s.securityid,s.symbol,s.name security_name,s.lastsale,s.marketcap,s.ipoyear,i.industryid,i.industry_name,r.sectorid,r.sector_name
+ FROM staging.security s,staging.sector r,staging.industry i
+ WHERE s.sectorid = r.sectorid AND s.industryid = i.industryid;
+
+ DELETE FROM staging.market_data;
+
+ INSERT INTO staging.market_data
+ SELECT
+  e.eod_date,s.securityid,s.symbol,e.open_price,e.high_price,e.low_price,e.eod_price,e.volume,s.industryid,
+  s.industry_name,s.sectorid,s.sector_name,s.security_name,s.lastsale,s.marketcap,s.ipoyear
+ FROM staging.eod_price e, staging.security_data s
+ WHERE e.symbol = s.symbol AND e.eod_date = p_eod_date;
+
+ DELETE FROM olap.market_data
+ WHERE eod_date = p_eod_date;
+
+ INSERT INTO olap.market_data
+ SELECT * FROM staging.market_data;
+
+ COMMIT;
+END;
+/
+
+call staging.legacy_elt(to_date('28-JUN-2019','DD-MON-YYYY'));
+
