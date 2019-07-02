@@ -27,7 +27,7 @@ sectorid||','||
 industryid||','||
 '"'||updated_on||'"'
 from oltp.security s where exists  
-(select 1 from oltp.eod_price p where s.symbol=p.symbol and p.eod_date='28-jun-2019');
+(select 1 from oltp.eod_price p where s.symbol=p.symbol and p.eod_date=(select max(eod_date) from oltp.eod_price));
 spool off;
 
 spool eod_price.csv;
@@ -39,7 +39,7 @@ high_price||','||
 low_price||','||
 eod_price||','||
 volume
-from oltp.eod_price where eod_date='28-jun-2019';
+from oltp.eod_price where eod_date=(select max(eod_date) from oltp.eod_price);
 spool off;
 
 exit;
