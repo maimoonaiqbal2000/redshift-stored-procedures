@@ -12,5 +12,6 @@ This demo explains a basic example on how we can move our Extract-Load-Transform
 
 ![RedShift ETL with Glue](aws-glue.png)
 
-![RedShift ELT with Stored Procedure](aws-redshift-procedure)
+![RedShift ELT with Stored Procedure](aws-redshift-procedure.png)
+
 
