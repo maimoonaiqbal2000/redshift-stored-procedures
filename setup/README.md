@@ -1,3 +1,5 @@
+# Step by Step Guide
+
 This page describes step-by-step guidance on how to setup infrastructure to implement this project:
 To summarize, it creates the historical stock market dataset from publicly available sources into Oracle and RedShift and then implements server less pipelines to ingest periodic dataset to the data-warehouses.
 
