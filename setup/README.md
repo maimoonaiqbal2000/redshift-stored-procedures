@@ -39,6 +39,7 @@ sudo mkdir -m 777 /stockdata
 sudo mkdir -m 777 /oltp_uploads
 sudo mkdir -m 777 /lambda
 ```
+
 9.  Create an S3 bucket to keep your dataset (e.g. my-oracle-redshift-bucket)
 aws s3 mb s3://my-oracle-redshift-bucket
 https://s3.console.aws.amazon.com/s3/home?region=us-east-1
@@ -46,8 +47,10 @@ https://s3.console.aws.amazon.com/s3/home?region=us-east-1
 10. Copy downloaded files in Step No. 1 and 2 in folder /stockdata
 You may use tools like winscp or ftp to copy these companylist.csv and nasdaq*.txt files
 
-11. Execute nasdaq_sqlldr_script to load all input data in oracle 
+11. Execute nasdaq_sqlldr_script to load all input data in oracle
+```bash
 sh nasdaq_sqlldr_script.bash
+```
 
 12. upload data files to s3
 aws s3 sync /oltp_uploads/ s3://my-oracle-redshift-bucket/oltp_uploads/
@@ -59,22 +62,23 @@ psql -h <your-redshift-endpoint> -U <redshift-master-userid> -d <redshift-databa
 export PGPASSWORD="Olap@123"
 psql -h <your-redshift-endpoint> -U <redshift-master-userid> -d <redshift-databasename> -p 5439 -f redshift_user_setup.sql -w
 ```
+
 14. Run Glue crawler on your S3 bucket and RedShift cluster to populate metadata tables to your glue catalog
 
-15. Create a glue job to transform and load data from S3 to Redshift
+15. Create a [glue job](../aws-glue/glue-etl-job.py) to transform and load data from S3 to Redshift
 
 16.  Create a new IAM role with below policies to grant access on S3, Glue, RedShift from AWS Lambda
 AmazonS3FullAccess
 AWSGlueServiceRole
 AmazonRedshiftFullAccess
 
-17. Create a lambda function using above role in python3.6 for AWS Glue
+17. Create [lambda function](../aws-glue/lambda_handler_glue.py) using above role in python3.6 for AWS Glue
 
-18. Create another lambda function using above role in python3.6 for AWS RedShift stored procedures
+18. Create another [lambda function](../redshift-proc/lambda_handler_redshift.py) using above role in python3.6 for AWS RedShift stored procedures
 
-19. Configure above lambda function to be triggered by upload events on S3 folder s3://my-oracle-redshift-bucket/notification/
+19. Configure first lambda function above to be triggered by upload events on S3 folder s3://my-oracle-redshift-bucket/notification/
 
-20. Configure above lambda function to be triggered by upload events on s3://my-oracle-redshift-bucket/notification2/*.txt
+20. Configure second lambda function above to be triggered by upload events on s3://my-oracle-redshift-bucket/notification2/*.txt
 
 
 Congratulations, you are now ready to explore all components of these legacy vs server less data warehouse implementations
