@@ -15,7 +15,7 @@ def lambda_handler_redshift(event, context):
 
 def execute_procedure(procedure_call):
     try:
-        conn=pg8000.connect(database='manash',host='redshift-demo.c9acrm2tda6a.ca-central-1.redshift.amazonaws.com', port=5439, user='redshift_user',password='Olap@123',ssl=False)
+        conn=pg8000.connect(database='YOURREDSHIFTDATABASE',host='YOURREDSHIFTHOST', port=5439, user='redshift_user',password='Olap@123',ssl=False)
         curr=conn.cursor()
         curr.execute(procedure_call)
         curr.close()
