@@ -1,4 +1,4 @@
-# Migrate ETL pipelines to AWS Redshift
+# Serverless Migration of ETL pipelines to AWS Redshift
 
 This demo explains a basic example on how we can migrate a legacy Extract-Load-Transform(ELT) processes implemented in Oracle into AWS RedShift as a complete serverless solution using stored procedures or AWS Glue. I have demonstrated below three design implementations to explain this:
 
