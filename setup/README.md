@@ -50,7 +50,7 @@ You may use tools like winscp or ftp to copy these companylist.csv and nasdaq*.t
 
 11. Execute nasdaq_sqlldr_script to load all input data in oracle
 ```bash
-sh nasdaq_sqlldr_script.bash
+sh /redshift-stored-procedures/nasdaq_sqlldr_script.bash
 ```
 
 12. upload data files to s3
