@@ -128,10 +128,10 @@ CREATE OR REPLACE VIEW staging.marketview AS
 
 
 
-copy staging.sector from 's3://oracle-redshift/oltp_uploads/sector.csv' iam_role 'arn:aws:iam::349411246714:role/Redshift-S3-Quicksight' region 'ca-central-1' format as csv quote as '"';
-copy staging.industry from 's3://oracle-redshift/oltp_uploads/industry.csv' iam_role 'arn:aws:iam::349411246714:role/Redshift-S3-Quicksight' region 'ca-central-1' format as csv quote as '"';
-copy staging.security from 's3://oracle-redshift/oltp_uploads/security.csv' iam_role 'arn:aws:iam::349411246714:role/Redshift-S3-Quicksight' region 'ca-central-1' format as csv quote as '"' dateformat 'YYYY-MM-DD';
-copy staging.eod_price from 's3://oracle-redshift/oltp_uploads/eod_price.csv' iam_role 'arn:aws:iam::349411246714:role/Redshift-S3-Quicksight' region 'ca-central-1' format as csv quote as '"' dateformat 'YYYY-MM-DD';
+copy staging.sector from 's3://my-oracle-redshift-bucket/oltp_uploads/sector.csv' iam_role 'arn:aws:iam::XXXXXXXXXXXX:role/Redshift-S3-Quicksight' region 'us-east-1' format as csv quote as '"';
+copy staging.industry from 's3://my-oracle-redshift-bucket/oltp_uploads/industry.csv' iam_role 'arn:aws:iam::XXXXXXXXXXXX:role/Redshift-S3-Quicksight' region 'us-east-1' format as csv quote as '"';
+copy staging.security from 's3://my-oracle-redshift-bucket/oltp_uploads/security.csv' iam_role 'arn:aws:iam::XXXXXXXXXXXX:role/Redshift-S3-Quicksight' region 'us-east-1' format as csv quote as '"' dateformat 'YYYY-MM-DD';
+copy staging.eod_price from 's3://my-oracle-redshift-bucket/oltp_uploads/eod_price.csv' iam_role 'arn:aws:iam::XXXXXXXXXXXX:role/Redshift-S3-Quicksight' region 'us-east-1' format as csv quote as '"' dateformat 'YYYY-MM-DD';
 
 analyze staging.sector;
 analyze staging.industry;
