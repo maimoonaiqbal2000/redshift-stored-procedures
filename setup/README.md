@@ -50,6 +50,7 @@ You may use tools like winscp or ftp to copy these companylist.csv and nasdaq*.t
 
 11. Execute nasdaq_sqlldr_script to load all input data in oracle
 ```bash
+cd /oltp_uploads
 sh /redshift-stored-procedures/setup/nasdaq_sqlldr_script.bash
 ```
 
@@ -60,7 +61,7 @@ aws s3 sync /oltp_uploads/ s3://my-oracle-redshift-bucket/oltp_uploads/
 
 13. update data in RedShift (replace your redshift db parameters from step# 7 above)
 ```bash
-cd /redshift-stored-procedures
+cd /redshift-stored-procedures/setup
 psql -h <your-redshift-endpoint> -U <redshift-master-userid> -d <redshift-databasename> -p 5439 -f redshift_admin_setup.sql
 export PGPASSWORD="Olap@123"
 psql -h <your-redshift-endpoint> -U <redshift-master-userid> -d <redshift-databasename> -p 5439 -f redshift_user_setup.sql -w
