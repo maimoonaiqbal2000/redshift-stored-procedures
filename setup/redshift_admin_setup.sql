@@ -8,8 +8,8 @@ drop table if exists staging.market_data;
 drop table if exists olap.market_data;
 drop table if exists olap.market_data_bkp;
 
-drop schema if exists olap;
-drop schema if exists staging;
+drop schema if exists olap cascade;
+drop schema if exists staging cascade;
 drop user if exists redshift_user;
 
 create user redshift_user password 'Olap@123';
