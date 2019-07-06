@@ -35,7 +35,7 @@ sudo yum -y install python36
 cd /
 sudo rm -rvf /redshift-stored-procedures/
 sudo git clone https://github.com/manashdeb/redshift-stored-procedures.git
-chmod -R 755 /redshift-stored-procedures/
+sudo chmod -R 755 /redshift-stored-procedures/
 sudo mkdir -m 777 /stockdata
 sudo mkdir -m 777 /oltp_uploads
 sudo mkdir -m 777 /lambda
