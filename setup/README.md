@@ -54,7 +54,9 @@ sh /redshift-stored-procedures/setup/nasdaq_sqlldr_script.bash
 ```
 
 12. upload data files to s3
+```bash
 aws s3 sync /oltp_uploads/ s3://my-oracle-redshift-bucket/oltp_uploads/
+```
 
 13. update data in RedShift (replace your redshift db parameters from step# 7 above)
 ```bash
