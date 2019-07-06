@@ -1,9 +1,9 @@
 CREATE OR REPLACE PROCEDURE staging.redshift_elt ( p_eod_date DATE ) AS $$
 BEGIN
- copy staging.sector from 's3://oracle-redshift/my-oracle-redshift-bucket/sector.csv' iam_role 'arn:aws:iam::349411246714:role/Redshift-S3-Quicksight' region 'ca-central-1' format as csv quote as '"';
- copy staging.industry from 's3://oracle-redshift/my-oracle-redshift-bucket/industry.csv' iam_role 'arn:aws:iam::349411246714:role/Redshift-S3-Quicksight' region 'ca-central-1' format as csv quote as '"';
- copy staging.security from 's3://oracle-redshift/my-oracle-redshift-bucket/security.csv' iam_role 'arn:aws:iam::349411246714:role/Redshift-S3-Quicksight' region 'ca-central-1' format as csv quote as '"' dateformat 'YYYY-MM-DD';
- copy staging.eod_price from 's3://oracle-redshift/my-oracle-redshift-bucket/eod_price.csv' iam_role 'arn:aws:iam::349411246714:role/Redshift-S3-Quicksight' region 'ca-central-1' format as csv quote as '"' dateformat 'YYYY-MM-DD';
+ copy staging.sector from 's3://oracle-redshift/my-oracle-redshift-bucket/sector.csv' iam_role 'arn:aws:iam::XXXXXXXXXXXX:role/Redshift-S3-Quicksight' region 'ca-central-1' format as csv quote as '"';
+ copy staging.industry from 's3://oracle-redshift/my-oracle-redshift-bucket/industry.csv' iam_role 'arn:aws:iam::XXXXXXXXXXXX:role/Redshift-S3-Quicksight' region 'ca-central-1' format as csv quote as '"';
+ copy staging.security from 's3://oracle-redshift/my-oracle-redshift-bucket/security.csv' iam_role 'arn:aws:iam::XXXXXXXXXXXX:role/Redshift-S3-Quicksight' region 'ca-central-1' format as csv quote as '"' dateformat 'YYYY-MM-DD';
+ copy staging.eod_price from 's3://oracle-redshift/my-oracle-redshift-bucket/eod_price.csv' iam_role 'arn:aws:iam::XXXXXXXXXXXX:role/Redshift-S3-Quicksight' region 'ca-central-1' format as csv quote as '"' dateformat 'YYYY-MM-DD';
 
  DELETE FROM staging.security_data;
 
